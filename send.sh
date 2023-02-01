@@ -5,7 +5,7 @@
 # For info on the GITHUB prefixed variables, visit:
 # https://help.github.com/en/articles/virtual-environments-for-github-actions#environment-variables
 
-AVATAR="https://github.com/actions.png"
+AVATAR="https://i.ibb.co/xHK0zzD/image0.jpg"
 
 # More info: https://www.gnu.org/software/bash/manual/bash.html#Shell-Parameter-Expansion
 case ${1,,} in
@@ -45,11 +45,7 @@ BRANCH_OR_PR="Branch"
 BRANCH_OR_PR_URL="$REPO_URL/tree/$BRANCH_NAME"
 ACTION_URL="$COMMIT_URL/checks"
 COMMIT_OR_PR_URL=$COMMIT_URL
-if [ "$AUTHOR_NAME" == "$COMMITTER_NAME" ]; then
-  CREDITS="$AUTHOR_NAME authored & committed"
-else
-  CREDITS="$AUTHOR_NAME authored & $COMMITTER_NAME committed"
-fi
+CREDITS="authored by $AUTHOR_NAME"
 
 if [ "$GITHUB_EVENT_NAME" == "pull_request" ]; then
 	BRANCH_OR_PR="Pull Request"
@@ -76,7 +72,7 @@ WEBHOOK_DATA='{
   "embeds": [ {
     "color": '$EMBED_COLOR',
     "author": {
-      "name": "'"$STATUS_MESSAGE"': '"$WORKFLOW_NAME"' ('"${HOOK_OS_NAME}"') - '"$GITHUB_REPOSITORY"'",
+      "name": "'"$STATUS_MESSAGE"': '"$WORKFLOW_NAME"'",
       "url": "'$ACTION_URL'",
       "icon_url": "'$AVATAR'"
     },
